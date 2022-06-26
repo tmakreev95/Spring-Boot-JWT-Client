@@ -1,0 +1,31 @@
+#user-details-wrapper{
+    width: 80%;
+    display: block;
+    margin: 5% auto;
+}
+
+.mat-form-field {
+    margin-right: 8px;
+}
+
+.user-details-separator{
+    margin: 15px 0;
+    display: block;
+}
+
+#user-details-address{
+    height: 40px !important;
+}
+ 
+#user-details-address-formField{
+    width: 42.5%;
+}
+
+.user-details-action-wrapper{
+    width: 100%;
+    display: block;
+}
+
+.action-btns-holder{
+    float: right;
+}

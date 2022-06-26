@@ -1,0 +1,8 @@
+.datatable-wrapper{
+    width: 80%;
+    margin: 40px auto;
+    display: block;
+}
+table{
+    width: 100%;
+}

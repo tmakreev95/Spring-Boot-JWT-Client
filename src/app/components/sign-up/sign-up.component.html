@@ -1,0 +1,121 @@
+<mat-card id="sign-up-form-holder">
+    <form class="sing-up-form" #signUpForm="ngForm" name="signUpForm" (submit)="signUp()">
+        
+        <mat-form-field class="form-input">
+            <mat-label>First Name</mat-label>
+
+            <input matInput placeholder="Enter your first name..." 
+                   id="sign-up-first-name" #firstName maxlength="255" required
+                   [formControl]="firstNameFormControl">
+
+            <mat-hint align="end">{{firstName.value.length}} / 255</mat-hint>
+
+            <mat-error *ngIf="firstNameFormControl.hasError('required')">
+                First Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-input">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Enter your last name..." 
+                   id="sign-up-last-name" #lastName maxlength="255" required
+                   [formControl]="lastNameFormControl">
+
+            <mat-hint align="end">{{lastName.value.length}} / 255</mat-hint>
+
+            <mat-error *ngIf="lastNameFormControl.hasError('required')">
+                Last Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-input">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter your email..." #email maxlength="100" required
+            [formControl]="emailFormControl">
+            <mat-hint align="end">{{email.value.length}} / 100</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+
+        <!-- Password -->
+        <mat-form-field class="form-input">
+            <mat-label>Password</mat-label>
+            <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+            <input matInput type="password" id="sign-up-password" maxlength="30" 
+            [type]="toggle.type" #passwordWithConfirmation 
+            required placeholder="Enter your password..."
+            [formControl]="passwordComponentWithConfirmation.passwordFormControl">
+           
+            <!--password hint-->
+            <mat-hint align="end" aria-live="polite">
+                {{passwordWithConfirmation.value.length}} / {{passwordComponentWithConfirmation.max}}
+            </mat-hint> 
+
+            <mat-error *ngIf="passwordComponentWithConfirmation.passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="passwordComponentWithConfirmation.passwordFormControl.hasError('pattern')">
+                Password is not valid
+            </mat-error>
+                       
+        </mat-form-field>
+
+        <mat-password-strength #passwordComponentWithConfirmation
+            (onStrengthChanged)="onStrengthChanged($event)"
+            [password]="passwordWithConfirmation.value">
+        </mat-password-strength>
+
+        <mat-slide-toggle class="example-margin" #showPasswordDetails
+          [(ngModel)]="model.showPasswordDetails" 
+          name="showPasswordDetails"
+          id="password-details-toggler" 
+          matTooltip="Toggle password details" 
+          [matTooltipPosition]="this.position"
+          [color]="this.color"
+          [checked]="checked"
+          [disabled]="disabled">
+        </mat-slide-toggle>
+
+        <div class="clearfix"></div>
+
+        <mat-password-strength-info
+            *ngIf="model.showPasswordDetails"
+            [passwordComponent]="passwordComponentWithConfirmation">
+        </mat-password-strength-info>
+        <!-- Password -->
+
+        <!-- Password Confirmation -->
+        <mat-form-field class="form-input">
+            <mat-label>Confirm Password</mat-label>
+            <mat-pass-toggle-visibility #toggleConfirm matSuffix></mat-pass-toggle-visibility>
+            <input matInput type="password" id="sign-up-password-confirm" maxlength="30"
+                [type]="toggleConfirm.type" #passwordConfirm 
+                required placeholder="Confirm your password..."
+                [formControl]="passwordComponentWithConfirmation.passwordConfirmationFormControl">
+
+            <mat-hint align="end" aria-live="polite">
+                {{passwordConfirm.value.length}} / {{passwordComponentWithConfirmation.max}}
+            </mat-hint>
+
+            <!-- password confirmation error msgs-->
+            <mat-error *ngIf="passwordComponentWithConfirmation.passwordConfirmationFormControl.hasError('required')">
+                Password confirmation is <strong>required</strong>
+            </mat-error>
+            <mat-error
+                *ngIf="passwordComponentWithConfirmation.passwordConfirmationFormControl.hasError('notConfirmed')">
+                Password is not the same
+            </mat-error>
+            <!-- password confirmation error msgs-->
+        </mat-form-field>    
+        <!-- Password Confirmation -->
+        <button mat-button color="primary" class="form-btn">Sign Up</button>
+        <div class="clearfix"></div>
+    </form>
+</mat-card>
+

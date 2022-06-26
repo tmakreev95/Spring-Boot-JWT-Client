@@ -1,0 +1,33 @@
+<div id="loginError" *ngIf="loginError">Incorrect credentials!</div>
+<mat-card id="sign-in-form-holder">
+    <form class="sing-in-form" (ngSubmit)="signIn()" #signInForm="ngForm" name="signInForm">
+        <mat-form-field class="form-input">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter your email..." 
+            name="email"
+            type="email" 
+            [formControl]="emailFormControl"
+            required>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-input">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" 
+            [formControl]="passwordFormControl"
+            name="password"
+            required>
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Password is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <a class="forgot-password-link" routerLink="/password-reset">Forgot your password?</a>
+
+        <button mat-button color="primary" class="form-btn">Sign In</button>
+        <div class="clearfix"></div>
+    </form>
+</mat-card>
+

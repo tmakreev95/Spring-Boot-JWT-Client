@@ -1,0 +1,26 @@
+<div id="actions-header">
+  <span id="actions-wrapper">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="addNewPost()">
+        <mat-icon>add_box</mat-icon>
+        <span>New</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>delete_forever</mat-icon>
+        <span>Delete All</span>
+      </button>
+      <!-- <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button> -->
+    </mat-menu>
+  </span>
+  <div class="clearfix"></div>
+</div>
+
+<div *ngFor="let post of posts">
+  <app-post [post]="post" [user]="user"></app-post>
+</div>

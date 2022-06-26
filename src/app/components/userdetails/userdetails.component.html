@@ -1,0 +1,214 @@
+<div id="user-details-wrapper">
+    <mat-accordion id="user-details-accordion">
+        <mat-expansion-panel [expanded]="true"
+        (opened)="panelOpenState = true" 
+        (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Here you can find your user information
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <form class="userdetails-form" [formGroup]="userDetailsForm" (submit)="updateUserProfile()"> 
+      
+            <mat-form-field>
+                <mat-label>First name</mat-label>
+                <input matInput required
+                name="firstName"
+                [formControl]="firstName"
+                maxlength="255">
+                <mat-hint align="end">{{ firstName.value.length }} / 255</mat-hint>
+                <mat-error *ngIf="firstName.hasError('required')">
+                    First name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field>
+                <mat-label>Last name</mat-label>
+                <input matInput 
+                required                
+                name="lastName" 
+                [formControl]="lastName"
+                maxlength="255">
+                <mat-hint align="end">{{ lastName.value.length }} / 255</mat-hint>
+                <mat-error *ngIf="lastName.hasError('required')">
+                    Last name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>          
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput 
+                name="email"
+                formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <input matInput 
+                name="status"
+                formControlName="status"> 
+            </mat-form-field>
+
+            <div class="user-details-action-wrapper">
+              <div class="action-btns-holder">
+                <button mat-button color="primary" class="form-btn">Update</button>
+              </div>
+              <div class="clearfix"></div>          
+            </div>
+        </form>          
+      </mat-expansion-panel>    
+    </mat-accordion>
+
+    <div class="user-details-separator"></div>
+
+    <mat-accordion id="user-details-address-accordion">
+      <mat-expansion-panel [expanded]="false"
+      (opened)="panelOpenState = true" 
+      (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Address data
+          </mat-panel-title>
+          <mat-panel-description>
+            Here you can register/find your address information
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form class="userdetails-form" [formGroup]="userAddressForm" (submit)="registerUserAddress()">
+    
+          <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input matInput 
+              name="addressCountry"
+              [formControl]="addressCountry"
+              maxlength="255">
+              <mat-hint align="end">{{ addressCountry.value.length }} / 255</mat-hint>
+          </mat-form-field>
+      
+          <mat-form-field>
+              <mat-label>District</mat-label>
+              <input matInput 
+              name="addressDistrict" 
+              [formControl]="addressDistrict"
+              maxlength="255">
+              <mat-hint align="end">{{ addressDistrict.value.length }} / 255</mat-hint>
+          </mat-form-field>          
+
+          <mat-form-field>
+              <mat-label>Municipality</mat-label>
+              <input matInput 
+              name="addressMunicipality"
+              [formControl]="addressMunicipality"
+              maxlength="255">
+              <mat-hint align="end">{{ addressMunicipality.value.length }} / 255</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>City</mat-label>
+              <input matInput 
+              name="addressCity"
+              [formControl]="addressCity"
+              maxlength="255">
+              <mat-hint align="end">{{ addressCity.value.length }} / 255</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <input matInput 
+            name="addressStatus"
+            formControlName="addressStatus"> 
+        </mat-form-field>  
+
+          <mat-form-field id="user-details-address-formField">
+              <mat-label>Address</mat-label>
+              <textarea id="user-details-address" matInput name="addressAddress"
+              [formControl]="addressAddress"
+              maxlength="255"></textarea> 
+              <mat-hint align="end">{{ addressAddress.value.length }} / 255</mat-hint>             
+          </mat-form-field>         
+
+          <div class="user-details-action-wrapper">
+            <div class="action-btns-holder">
+              <button mat-button color="primary" class="form-btn" *ngIf="addressShowUpdateButton">Update</button>
+              <button mat-button color="primary" class="form-btn" *ngIf="addressShowRegisterButton">Register</button>
+            </div>
+            <div class="clearfix"></div>          
+          </div>        
+      </form>        
+      </mat-expansion-panel>    
+    </mat-accordion>
+
+    <div class="user-details-separator"></div>
+
+    <mat-accordion id="user-details-contact-accordion">
+      <mat-expansion-panel [expanded]="false"
+      (opened)="panelOpenState = true" 
+      (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Contact data
+          </mat-panel-title>
+          <mat-panel-description>
+            Here you can register/find your contact information
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form class="userdetails-form" [formGroup]="userContactForm" (submit)="registerUserContact()">
+    
+          <mat-form-field>
+              <mat-label>Website</mat-label>
+              <input matInput 
+              name="contactWebsite"
+              [formControl]="contactWebsite" maxlength="255">
+              <mat-hint align="end">{{ contactWebsite.value.length }} / 255</mat-hint>           
+          </mat-form-field>
+      
+          <mat-form-field>
+              <mat-label>Mobile</mat-label>
+              <input matInput 
+              name="contactMobile" 
+              [formControl]="contactMobile" maxlength="20">
+              <mat-hint align="end">{{ contactMobile.value.length }} / 20</mat-hint>          
+          </mat-form-field>          
+
+          <mat-form-field>
+              <mat-label>Fax</mat-label>
+              <input matInput 
+              name="contactFax"
+              [formControl]="contactFax"
+              maxlength="10">
+              <mat-hint align="end">{{ contactFax.value.length }} / 10</mat-hint>         
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Alternative Email</mat-label>
+            <input matInput 
+            name="contactAltEmail" type="email"
+            [formControl]="contactAltEmail" maxlength="50">
+            <mat-hint align="end">{{ contactAltEmail.value.length }} / 50</mat-hint>   
+            <mat-error *ngIf="contactAltEmail.hasError('email')">
+              Not a <strong>valid</strong> email address!
+          </mat-error>
+        </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Status</mat-label>
+              <input matInput 
+              name="contactStatus"
+              formControlName="contactStatus"> 
+          </mat-form-field>    
+
+          <div class="user-details-action-wrapper">
+            <div class="action-btns-holder">
+              <button mat-button color="primary" class="form-btn" *ngIf="contactShowUpdateButton">Update</button>
+              <button mat-button color="primary" class="form-btn" *ngIf="contactShowRegisterButton">Register</button>
+            </div>
+            <div class="clearfix"></div>          
+          </div>     
+      </form>        
+      </mat-expansion-panel>    
+    </mat-accordion>
+</div>
+
+  

@@ -1,0 +1,24 @@
+<div id="likes-bottom-sheet-header">
+  <p>Users who liked this post</p>
+</div>
+<mat-nav-list>
+    <a href="#" mat-list-item (click)="openLink($event)" *ngFor="let like of likes">
+      <span mat-line>{{ like.userInfo }}</span>
+      <span mat-line>{{ like.userInfoEmail }}</span>
+    </a>    
+</mat-nav-list>
+
+<style>
+  #likes-sheet-icon{
+    font-size: 18px;
+  }
+  #likes-bottom-sheet-header{
+    width: 100%;
+    display: block;
+    padding: 2px 0;
+  }
+  #likes-bottom-sheet-header p{
+    font-size: 20px;
+    text-align: center;
+  }
+</style>

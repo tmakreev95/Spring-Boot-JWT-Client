@@ -1,0 +1,118 @@
+<div id="post-wrapper">
+    <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+    </button> -->
+    <mat-card>    
+        <mat-horizontal-stepper [linear]="isLinear" #stepper id="post-stepper">
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup" #firstForm="ngForm">
+                <ng-template matStepLabel>Title</ng-template>
+                <mat-form-field id="title-formfield">
+                    <mat-label>Title</mat-label> <!-- [formControl]="title" -->
+                    <input matInput placeholder="Enter post's title..." 
+                    [formControl]="title" required 
+                    name="title" type="text" id="title"  maxlength="255">
+                    <mat-hint align="end">{{title.value.length}} / 255</mat-hint>
+                    <mat-error *ngIf="title.hasError('required')">
+                        Title is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>                
+                <div class="stepper-options">
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup" #secondForm="ngForm">
+                <ng-template matStepLabel>Description</ng-template>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Description</mat-label> <!-- [formControl]="description" -->
+                    <textarea matInput placeholder="Enter post's description..."
+                    [formControl]="description" required id="post-textarea"
+                    name="description" maxlength="4000"></textarea>
+                    <mat-hint align="end">{{description.value.length}} / 4000</mat-hint>
+                    <mat-error *ngIf="description.hasError('required')">
+                        Description is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field>
+                    <mat-label>Descritio</mat-label>
+                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                            required>
+                </mat-form-field> -->
+                <div class="stepper-options">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup" #thirdForm="ngForm">
+                <ng-template matStepLabel>Categories</ng-template>
+                <mat-form-field id="categories-formfield">
+                    <mat-label>Categories</mat-label><!-- formControlName="categories" cant be applied to this component -->
+                    <mat-select [formControl]="categories" multiple required> 
+                    <mat-select-trigger>
+                        {{categories.value ? categories.value[0] : ''}}
+                        <span *ngIf="categories.value?.length > 1" class="example-additional-selection">
+                        (+{{categories.value.length - 1}} {{categories.value?.length === 2 ? 'other' : 'others'}})
+                        </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let category of categoriesList" [value]="category">{{category}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="categories.hasError('required')">
+                    Categories are <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>              
+                <div class="stepper-options">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="fourthFormGroup">
+                <div class="fourth-step">
+                    <form [formGroup]="fourthFormGroup" #fourthForm="ngForm" id="fourth-form">
+                        <ng-template matStepLabel>Featured Image</ng-template>
+                        <div class="featuredImage-left-inputs">
+                            <mat-label>Featured Image: </mat-label>
+                            <input type="file" id="file" required name="featuredImage" accept="image/*"
+                                [formControl]="featuredImage"
+                                (change)="handleUpload($event)">
+                            <label for="file" matRipple [matRippleColor]="red" class="mat-elevation-z3 mat-button mat-button-base file-label">Browse</label>                    
+                            <mat-hint align="end" class="featuredImage-hint">{{ featuredImageSize }} / 3 MB</mat-hint>
+                            <mat-error class="error-msg-wrapper" *ngIf="featuredImage.hasError('required')">
+                                Featured Image is <strong>required</strong>
+                            </mat-error>
+                            <mat-error class="error-msg-wrapper" *ngIf="wrongFormat">
+                                Wrong file <strong>format</strong>
+                            </mat-error>
+
+                            <div class="stepper-options">
+                                <button mat-button matStepperPrevious>Back</button>
+                                <button mat-button matStepperNext>Next</button>
+                            </div>
+                        </div>                    
+    
+                        <div class="featuredImage-preview mat-elevation-z3">
+                            <p *ngIf="imageSrc == undefined">Image Preview</p>
+                            <img [src]="imageSrc" *ngIf="imageSrc">
+                        </div>                          
+
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+                
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done. Revise your information and submit!</p>
+                <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-button (click)="insertPost()">Submit</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>         
+    </mat-card>    
+</div>

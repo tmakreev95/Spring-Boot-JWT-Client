@@ -1,0 +1,91 @@
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+#post-textarea {
+    height: 60px !important;
+}
+#post-wrapper{
+    width: 70%;
+    margin: 4% auto;
+}
+.stepper-wrapper{
+    height: 280px;
+}
+  
+.mat-form-field {
+    margin-top: 16px;
+}
+
+#title-formfield, #categories-formfield{
+    width: 40%;
+}
+
+#post-stepper{
+    height: 240px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.featuredImage-preview{
+    width: 240px;
+    height: 160px;
+    float: right;
+}
+.featuredImage-preview p {
+    margin: 28% auto;
+    display: block;
+    text-align: center;
+}
+.featuredImage-hint{
+    font-size: 14px;
+    float: right;
+}
+.error-msg-wrapper{
+    margin-top: 10px;
+}
+
+.featuredImage-preview img {
+    width: 240px;
+    height: 160px;
+}
+
+.stepper-options{
+    margin-top: 10px;
+}
+
+.featuredImage-left-inputs {
+    width: 60%;
+    float: left;
+}
+.fourth-step{
+    margin-top: 10px;
+}
+
+[type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.file-label{
+    font-size: 12px;
+}
+
+[type="file"] + label {
+    background-color: #3f51b5;;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 5px;
+}
+    
+ 
+    
+

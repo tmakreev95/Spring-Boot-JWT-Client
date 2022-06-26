@@ -1,0 +1,33 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+#user-details{
+  float: right !important;
+  display: block !important;
+  width: 100px !important;
+}
+
+.nav-icon{
+  margin-right: 10px;
+}
+
+.nav-fa-icon{
+  font-size: 24px;
+  padding-left: 3px;
+  margin-right: 10px;
+  color: rgba(0,0,0,.87);;
+}
